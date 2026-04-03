@@ -3,13 +3,8 @@ const { getCounselors, getCounselorById } = require('../controllers/counselorCon
 const { authenticate } = require('../middleware/auth');
 
 const router = express.Router();
-
 router.use(authenticate);
-
-router.route('/')
-  .get(getCounselors);
-
-router.route('/:id')
-  .get(getCounselorById);
+router.route('/').get(getCounselors);
+router.route('/:id').get(getCounselorById);
 
 module.exports = router;
