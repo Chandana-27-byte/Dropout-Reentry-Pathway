@@ -3,11 +3,7 @@ const { getEnrollments, createEnrollment } = require('../controllers/enrollmentC
 const { authenticate } = require('../middleware/auth');
 
 const router = express.Router();
-
 router.use(authenticate);
-
-router.route('/')
-  .get(getEnrollments)
-  .post(createEnrollment);
+router.route('/').get(getEnrollments).post(createEnrollment);
 
 module.exports = router;
