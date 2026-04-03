@@ -14,21 +14,10 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (token && !user) {
       authService.getMe()
-        .then((res) => {
-          if (res.success) {
-            setUser(res.data);
-            localStorage.setItem('user', JSON.stringify(res.data));
-          }
-        })
-        .catch(() => {
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          setUser(null);
-        })
+        .then((res) => { if (res.success) { setUser(res.data); localStorage.setItem('user', JSON.stringify(res.data)); } })
+        .catch(() => { localStorage.removeItem('token'); localStorage.removeItem('user'); setUser(null); })
         .finally(() => setLoading(false));
-    } else {
-      setLoading(false);
-    }
+    } else { setLoading(false); }
   }, []);
 
   const login = async (email, password) => {
@@ -42,11 +31,7 @@ export const AuthProvider = ({ children }) => {
     return response;
   };
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setUser(null);
-  };
+  const logout = () => { localStorage.removeItem('token'); localStorage.removeItem('user'); setUser(null); };
 
   const updateUser = (data) => {
     const updated = { ...user, ...data };
@@ -55,14 +40,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      login,
-      logout,
-      updateUser,
-      loading,
-      isAuthenticated: !!user,
-    }}>
+    <AuthContext.Provider value={{ user, login, logout, updateUser, loading, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   );
