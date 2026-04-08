@@ -50,7 +50,7 @@ const Login = () => {
                 <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all text-sm"
-                  placeholder="admin@example.com" />
+                  placeholder="admin@dropout-reentry.com" />
               </div>
             </div>
             <div>
@@ -73,7 +73,7 @@ const Login = () => {
             </button>
           </form>
           <div className="mt-6 pt-6 border-t border-white/10 text-center">
-            <p className="text-xs text-gray-400">Demo: <span className="text-gray-300">admin@example.com</span> / <span className="text-gray-300">password123</span></p>
+            <p className="text-xs text-gray-400">Demo: <span className="text-gray-300">admin@dropout-reentry.com</span> / <span className="text-gray-300">Admin@123</span></p>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ INSERT INTO districts (district_name, state_id) VALUES
 
 -- Insert Admin User (password: Admin@123)
 INSERT INTO users (email, password_hash, role, first_name, last_name, phone, is_active, email_verified) VALUES
-('admin@dropout-reentry.com', '$2a$10$W/y18Apb4jyVl89Hvd5SmunEcyPyEc/.Q0qwoqNkbkjZJCBb5Fcwq', 'admin', 'System', 'Administrator', '9999999999', TRUE, TRUE);
+('admin@dropout-reentry.com', '$2a$10$Mz2C6QpGQFn/09JWJPQPyuX9QgqTI.4rubv/NADv1Sk2RqRGsKZye', 'admin', 'System', 'Administrator', '9999999999', TRUE, TRUE);
 
 -- Insert Dropout Reasons
 INSERT INTO dropout_reasons_master (reason_id, reason_category, reason_name, description, severity_level) VALUES
