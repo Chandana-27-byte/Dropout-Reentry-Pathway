@@ -2,6 +2,7 @@
   "name": "dropout-reentry-server",
   "version": "1.0.0",
   "description": "Backend API for Dropout Re-entry Pathway System",
+  "license": "MIT",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
