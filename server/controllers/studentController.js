@@ -57,6 +57,8 @@ exports.createStudent = async (req, res, next) => {
 exports.updateStudent = async (req, res, next) => {
   try {
     const payload = req.body;
+    const formattedDate = payload.date_of_birth ? new Date(payload.date_of_birth).toISOString().split('T')[0] : null;
+    
     const updateQuery = `UPDATE students SET first_name = ?, last_name = ?, date_of_birth = ?, gender = ?,
       email = ?, phone = ?, address = ?, district_id = ?, pincode = ?,
       aadhaar_number = ?, category = ?, is_differently_abled = ?,
@@ -64,7 +66,7 @@ exports.updateStudent = async (req, res, next) => {
       guardian_name = ?, guardian_phone = ?, guardian_occupation = ?,
       family_income = ?, status = ? WHERE student_id = ?`;
     const values = [
-      payload.first_name, payload.last_name, payload.date_of_birth, payload.gender,
+      payload.first_name, payload.last_name, formattedDate, payload.gender,
       payload.email, payload.phone, payload.address, payload.district_id, payload.pincode,
       payload.aadhaar_number, payload.category, payload.is_differently_abled || false,
       payload.disability_type || null, payload.father_name, payload.mother_name,
@@ -73,5 +75,13 @@ exports.updateStudent = async (req, res, next) => {
     ];
     await pool.query(updateQuery, values);
     res.json({ success: true, message: 'Student updated successfully' });
+  } catch (error) { next(error); }
+};
+
+exports.deleteStudent = async (req, res, next) => {
+  try {
+    const [result] = await pool.query('DELETE FROM students WHERE student_id = ?', [req.params.id]);
+    if (result.affectedRows === 0) return res.status(404).json({ success: false, message: 'Student not found' });
+    res.json({ success: true, message: 'Student deleted successfully' });
   } catch (error) { next(error); }
 };
